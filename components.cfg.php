@@ -27,7 +27,7 @@ use Skyline\Component\Config\JavaScriptPostLoadComponent;
 $file = __DIR__ . "/Components/skyline-sticky-component.js";
 
 return [
-    "Animation" => [
+    "Sticky" => [
         'css1' => new JavaScriptPostLoadComponent(
             "/Public/js/skyline-sticky-component.js",
             'sha384-'.hash_file("sha384", $file),
