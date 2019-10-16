@@ -15,7 +15,7 @@
   },
   "require" : {
     "php": "^7.2",
-    "skyline/component-jquery": "dev-master"
+    "skyline/component-jquery": "^3"
   },
   "require-dev": {
     "phpunit/phpunit": "^6",
