@@ -31,21 +31,24 @@
  *
  */
 
-.sticky-fixed {
+html, body {
+    height: 100%;
+}
+
+.sticky-fixed, .sticky-bottom {
+    width: 100%;
+}
+
+.sticky-fixed .release-from-top {
     -webkit-transition: background-color 500ms, padding-top 500ms, padding-bottom 500ms;
     -moz-transition: background-color 500ms, padding-top 500ms, padding-bottom 500ms;
     -ms-transition: background-color 500ms, padding-top 500ms, padding-bottom 500ms;
     -o-transition: background-color 500ms, padding-top 500ms, padding-bottom 500ms;
     transition: background-color 500ms, padding-top 500ms, padding-bottom 500ms;
-    background-color: transparent;
+    background-color: transparent !important;
 }
 
-.sticky-fixed.nav-collapse {
-    background-color: white;
-}
-
-@media (min-width: 576px) {
-    .sticky-bottom {
-        position: fixed;
-    }
+.sticky-fixed.nav-collapse .release-from-top {
+    background-color: red !important;
+    padding: 0;
 }

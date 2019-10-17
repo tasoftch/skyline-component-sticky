@@ -5,15 +5,19 @@ $(function() {
         var bottomEdge = $footer.position().top + footerHeight;
 
         if(bottomEdge < $(window).height()) {
-            var flexibleHeight = $flexible.outerHeight(true);
+            var flexibleHeightOffset = $flexible.attr("data-adjust") * 1;
+            if(!flexibleHeightOffset)
+                flexibleHeightOffset = $flexible.outerHeight(true) - $flexible.height();
+
             var fixedHeight = 0;
             $fixed.each(function() {
                 fixedHeight += $(this).outerHeight(true);
             });
-
-            $flexible.css("height", ($(window).height() - fixedHeight - footerHeight) + "px");
+            console.log("Height: " + ($(window).height() - fixedHeight - footerHeight + flexibleHeightOffset) + "px");
+            $flexible.css("min-height", ($(window).height() - fixedHeight - footerHeight + flexibleHeightOffset) + "px");
         } else {
-            $flexible.css("height", undefined);
+            console.log("Reset Height");
+            $flexible.css("min-height", "");
         }
     }
 
@@ -21,7 +25,10 @@ $(function() {
     var $flexible = $(".sticky-flexible");
     var $fixed = $(".sticky-fixed");
 
+    var $flexibleOriginalHeight = 0;
+
     if($footer.length && $flexible.length) {
+        $flexibleOriginalHeight = $flexible.outerHeight(true);
         $(window).resize(function() {
             updateFooter($footer);
         });
@@ -29,7 +36,7 @@ $(function() {
     }
 
     // Add sticky top scroll observer
-    var $stickyTopScrollers = $(".sticky-fixed[data-role='hold-top']");
+    var $stickyTopScrollers = $("[data-role='hold-top']");
     if($stickyTopScrollers.length) {
         $( window ).scroll( function(evt) {
             var st = $(window).scrollTop();
