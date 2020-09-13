@@ -29,19 +29,19 @@ $file = __DIR__ . "/Components/skyline-sticky-component.js";
 $css  = __DIR__ . "/Components/skyline-sticky-component.css";
 
 return [
-    "Sticky" => [
-        'js' => new JavaScriptPostLoadComponent(
-            "/Public/js/skyline-sticky-component.js",
-            'sha384-'.hash_file("sha384", $file),
-            NULL,
-            CompilerContext::getCurrentCompiler()->getRelativeProjectPath($file)
-        ),
-        "css" => new CSSComponent(
-            "/Public/css/skyline-sticky-component.css",
-            'all',
-            'sha384-'.hash_file("sha384", $css),
-            NULL,
-            CompilerContext::getCurrentCompiler()->getRelativeProjectPath($css)
-        )
-    ]
+	"Sticky" => [
+		'js' => new JavaScriptPostLoadComponent(
+			"/Public/js/skyline-sticky-component.js",
+			'sha384-'.base64_encode( hash_file("sha384", $file, true)),
+			NULL,
+			CompilerContext::getCurrentCompiler()->getRelativeProjectPath($file)
+		),
+		"css" => new CSSComponent(
+			"/Public/css/skyline-sticky-component.css",
+			'all',
+			'sha384-'. base64_encode( hash_file("sha384", $css, true)),
+			NULL,
+			CompilerContext::getCurrentCompiler()->getRelativeProjectPath($css)
+		)
+	]
 ];
